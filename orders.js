@@ -74,7 +74,7 @@ app.get("/orders", (req, res) => {
 app.get("/order/:id", (req, res) => {
   Order.findById(req.params.id).then((order) => {
     axios
-      .get("http://localhost:5555/customers/" + order.CustomerID)
+      .get("https://tp5-nodejs-rest-api-microservice-li-eight.vercel.app/customers/" + order.CustomerID)
       .then((response) => {
         let orderObject = {
           customerName: response.data.customer.name,
@@ -82,7 +82,7 @@ app.get("/order/:id", (req, res) => {
         };
 
         axios
-          .get("http://localhost:4545/books/" + order.BookID)
+          .get("https://tp5-nodejs-rest-api-microservice-li.vercel.app/books/" + order.BookID)
           .then((response) => {
             orderObject.bookTitle = response.data.book.title;
 
