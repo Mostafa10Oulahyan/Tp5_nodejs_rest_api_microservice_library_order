@@ -79,7 +79,7 @@ app.get("/order/:id", (req, res) => {
   Order.findById(req.params.id).then((order) => {
     axios
       .get(
-        "https://tp5-nodejs-rest-api-microservice-li-eight.vercel.app/customers/" +
+        "https://tp5-nodejs-rest-api-microservice-li.vercel.app/customers/" +
           order.CustomerID,
       )
       .then((response) => {
@@ -90,7 +90,7 @@ app.get("/order/:id", (req, res) => {
 
         axios
           .get(
-            "https://tp5-nodejs-rest-api-microservice-li.vercel.app/books/" +
+            "https://tp5-nodejs-rest-api-microservice-li-nine.vercel.app/books/" +
               order.BookID,
           )
           .then((response) => {
