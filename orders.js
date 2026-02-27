@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 const { ObjectId } = require("mongodb");
 const axios = require("axios");
+const cors = require("cors");
+
+// Enable CORS for all routes
+app.use(cors());
 
 // load Order model
 
@@ -74,7 +78,10 @@ app.get("/orders", (req, res) => {
 app.get("/order/:id", (req, res) => {
   Order.findById(req.params.id).then((order) => {
     axios
-      .get("https://tp5-nodejs-rest-api-microservice-li-eight.vercel.app/customers/" + order.CustomerID)
+      .get(
+        "https://tp5-nodejs-rest-api-microservice-li-eight.vercel.app/customers/" +
+          order.CustomerID,
+      )
       .then((response) => {
         let orderObject = {
           customerName: response.data.customer.name,
@@ -82,7 +89,10 @@ app.get("/order/:id", (req, res) => {
         };
 
         axios
-          .get("https://tp5-nodejs-rest-api-microservice-li.vercel.app/books/" + order.BookID)
+          .get(
+            "https://tp5-nodejs-rest-api-microservice-li.vercel.app/books/" +
+              order.BookID,
+          )
           .then((response) => {
             orderObject.bookTitle = response.data.book.title;
 
